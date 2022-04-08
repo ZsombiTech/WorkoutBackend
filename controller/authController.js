@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
-const LoginModel = require("../model/authModel");
-const TokenModel = require("../model/Tokens");
+const UserModel = require("../model/authModel");
+const TokenModel = require("../model/tokenModel");
 
 class Auth {
   register = async (req, res, next) => {
@@ -9,14 +9,18 @@ class Auth {
       email: req.body.email,
       password: req.body.password,
     };
-    LoginModel.find(
+
+    console.log("lefut");
+    UserModel.find(
       { username: user.username },
       "username",
       async (err, docs) => {
         if (docs.length > 0) {
+          console.log("lefut");
           res.json({ response: "Already exits" });
         } else {
-          const post = new LoginModel(user);
+          console.log("lefut");
+          const post = new UserModel(user);
           const savedPost = await post.save();
           jwt.sign({ user }, "secretkey", async (err, token) => {
             const usertoken = new TokenModel({ token });
@@ -34,7 +38,7 @@ class Auth {
       password: req.body.password,
     };
 
-    LoginModel.find({ username: user.username }, (err, docs) => {
+    UserModel.find({ username: user.username }, (err, docs) => {
       if (!err) {
         if (docs.length > 0) {
           if (user.password == docs[0].password) {
