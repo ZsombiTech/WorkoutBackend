@@ -7,8 +7,8 @@ const StatsSchema = mongoose.Schema({
   },
   sleepinghour: [{ day: String, hours: String }],
   steps: [{ day: String, step: Number }],
-  distance: [{ day: String, step: Number }],
-  calories: [{ day: String, step: Number }],
+  distance: [{ day: String, distance: Number }],
+  calories: [{ day: String, calories: Number }],
   date: {
     type: Date,
     default: Date.now,
