@@ -3,6 +3,14 @@ const UserModel = require("../model/authModel");
 const TokenModel = require("../model/tokenModel");
 
 class Auth {
+  verify = async (req, res, next) => {
+    if (req.token != null) {
+      jwt.verify(req.token, "secretkey", async (err, authData) => {
+        res.json({ response: "Good" });
+        console.log("okes");
+      });
+    }
+  };
   register = async (req, res, next) => {
     const user = {
       username: req.body.username,
@@ -44,13 +52,14 @@ class Auth {
               res.json({
                 response: "correct",
                 token,
+                displayName: docs[0].username,
               });
             });
           } else {
             res.json({ response: "Incorrect password" });
           }
         } else {
-          res.json({ response: "No user with this username" });
+          res.json({ response: "No user with this email" });
         }
       } else {
         res.json({ response: "Something went wrong" });
