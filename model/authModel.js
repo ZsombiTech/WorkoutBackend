@@ -17,6 +17,10 @@ const UserSchema = mongoose.Schema({
     type: String,
     default: "Write a bio here...",
   },
+  followers: {
+    type: Number,
+    default: 0,
+  },
   date: {
     type: Date,
     default: Date.now,
