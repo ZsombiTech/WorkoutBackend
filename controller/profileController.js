@@ -18,18 +18,18 @@ class Profile {
         }
       );
     });
-    getProfileData = async (req, res, next) => {
-      jwt.verify(req.token, "secretkey", async (err, authData) => {
-        const id = req.body.id;
-        UserModel.findById(id, (err, docs) => {
-          if (err) {
-            console.log(err);
-          } else {
-            res.json(docs[0]);
-          }
-        });
+  };
+  getProfileData = async (req, res, next) => {
+    jwt.verify(req.token, "secretkey", async (err, authData) => {
+      const id = req.body.id;
+      UserModel.findById(id, (err, docs) => {
+        if (err) {
+          console.log(err);
+        } else {
+          res.json(docs[0]);
+        }
       });
-    };
+    });
   };
 }
 module.exports = Profile;

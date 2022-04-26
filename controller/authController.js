@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const UserModel = require("../model/authModel");
 const TokenModel = require("../model/tokenModel");
+const StatsModel = require("../model/statsModel");
 
 class Auth {
   verify = async (req, res, next) => {
@@ -17,6 +18,11 @@ class Auth {
       email: req.body.email,
       password: req.body.password,
     };
+    const basicstats = {
+      username: req.body.username,
+      email: req.body.email,
+      password: req.body.password,
+    };
 
     console.log("lefut");
     UserModel.find({ email: user.email }, "username", async (err, docs) => {
@@ -27,10 +33,18 @@ class Auth {
         console.log("lefut");
         const post = new UserModel(user);
         const savedPost = await post.save();
+        //const newperson = new StatsModel();
         jwt.sign({ user }, "secretkey", async (err, token) => {
           const usertoken = new TokenModel({ token });
           const savedtoken = await usertoken.save();
-          res.json({ token: token, response: "correct" });
+
+          UserModel.find({ email: user.email }, async (err, user) => {
+            res.json({
+              token: token,
+              userid: user[0]._id,
+              response: "correct",
+            });
+          });
         });
       }
     });
@@ -52,6 +66,7 @@ class Auth {
               res.json({
                 response: "correct",
                 token,
+                userid: docs[0]._id,
                 displayName: docs[0].username,
               });
             });
