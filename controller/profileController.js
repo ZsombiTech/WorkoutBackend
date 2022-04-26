@@ -21,12 +21,14 @@ class Profile {
   };
   getProfileData = async (req, res, next) => {
     jwt.verify(req.token, "secretkey", async (err, authData) => {
-      const id = req.body.id;
+      let id = req.params.userid;
+      id = id.substring(1);
+
       UserModel.findById(id, (err, docs) => {
         if (err) {
           console.log(err);
         } else {
-          res.json(docs[0]);
+          res.json(docs);
         }
       });
     });

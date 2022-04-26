@@ -6,6 +6,6 @@ const Profile = new profileController();
 
 router.post("/setdesc", Profile.setDesc);
 
-router.get("/getProfileData", Profile.getProfileData);
+router.get("/getProfileData/:userid", Profile.getProfileData);
 
 module.exports = router;
