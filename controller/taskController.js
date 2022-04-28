@@ -27,13 +27,16 @@ class TaskController {
         );
       });
     });
-    getTask = async (req, res, next) => {
-      jwt.verify(req.token, "secretkey", async (err, authData) => {
-        TaskModel.find({ name: username }, (err, docs) => {
-          res.json(docs);
-        });
+  };
+  getTask = async (req, res, next) => {
+    jwt.verify(req.token, "secretkey", async (err, authData) => {
+      let username = req.params.username;
+      username = username.substring(1);
+
+      TaskModel.find({ name: username }, (err, docs) => {
+        res.json(docs);
       });
-    };
+    });
   };
 }
 module.exports = TaskController;
