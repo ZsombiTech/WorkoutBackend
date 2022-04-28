@@ -22,11 +22,18 @@ class TaskController {
           { name: username },
           { $push: { tasks: newpo } },
           (err, docs) => {
-            console.log("siker");
+            res.json("siker");
           }
         );
       });
     });
+    getTask = async (req, res, next) => {
+      jwt.verify(req.token, "secretkey", async (err, authData) => {
+        TaskModel.find({ name: username }, (err, docs) => {
+          res.json(docs);
+        });
+      });
+    };
   };
 }
 module.exports = TaskController;
