@@ -43,9 +43,11 @@ class TaskController {
       const description = req.body.description;
       const username = req.body.username;
       TaskModel.findOneAndUpdate(
-        {},
+        { name: username },
         { $set: { "tasks.$[elem1].completed": true } },
-        { arrayFilters: [{ "elem1.description": description }] },
+        {
+          arrayFilters: [{ "elem1.description": description }],
+        },
         (err, docs) => {
           console.log(docs);
         }
