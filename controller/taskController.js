@@ -50,7 +50,6 @@ class TaskController {
           console.log(docs);
         }
       );
-      console.log(description);
     });
   };
 }
