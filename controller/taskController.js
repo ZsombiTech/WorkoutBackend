@@ -38,5 +38,20 @@ class TaskController {
       });
     });
   };
+  deleteTask = async (req, res, next) => {
+    jwt.verify(req.token, "secretkey", async (err, authData) => {
+      const description = req.body.description;
+      const username = req.body.username;
+      TaskModel.findOneAndUpdate(
+        {},
+        { $set: { "tasks.$[elem1].completed": true } },
+        { arrayFilters: [{ "elem1.description": description }] },
+        (err, docs) => {
+          console.log(docs);
+        }
+      );
+      console.log(description);
+    });
+  };
 }
 module.exports = TaskController;

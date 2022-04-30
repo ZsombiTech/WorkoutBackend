@@ -8,4 +8,6 @@ router.post("/addtask", Task.addTask);
 
 router.get("/gettask/:username", Task.getTask);
 
+router.delete("/deletetask", Task.deleteTask);
+
 module.exports = router;
