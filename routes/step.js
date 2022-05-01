@@ -6,4 +6,6 @@ const Steps = new stepController();
 
 router.post("/getsteps", Steps.getDailyStep);
 
+router.post("/addsteps", Steps.addDailyStep);
+
 module.exports = router;
