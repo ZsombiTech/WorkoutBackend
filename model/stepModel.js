@@ -9,7 +9,7 @@ const StepSchema = mongoose.Schema({
     {
       id: Number,
       stepcount: Number,
-      date: { type: Date, default: Date.now },
+      date: String,
     },
   ],
 
