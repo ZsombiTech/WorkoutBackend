@@ -8,4 +8,6 @@ router.post("/getsteps", Steps.getDailyStep);
 
 router.post("/addsteps", Steps.addDailyStep);
 
+router.post("/getavg", Steps.addWeeklyStep);
+
 module.exports = router;

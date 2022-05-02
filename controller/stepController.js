@@ -63,5 +63,13 @@ class StepController {
       });
     });
   };
+  addWeeklyStep = async (req, res, next) => {
+    jwt.verify(req.token, "secretkey", async (err, authData) => {
+      const username = req.body.username;
+      StepModel.find({ username: username }, (err, docs) => {
+        console.log(data[0]);
+      });
+    });
+  };
 }
 module.exports = StepController;
