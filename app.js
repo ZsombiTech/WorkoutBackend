@@ -6,6 +6,7 @@ const statsRoutes = require("./routes/stats");
 const profileRoutes = require("./routes/profile");
 const taskRoutes = require("./routes/tasks");
 const stepRoutes = require("./routes/step");
+const caloriesRoutes = require("./routes/calorie");
 const tokenverify = require("./middleware/verifyToken");
 
 const app = express();
@@ -24,5 +25,6 @@ app.use("/", statsRoutes);
 app.use("/", profileRoutes);
 app.use("/", taskRoutes);
 app.use("/", stepRoutes);
+app.use("/", caloriesRoutes);
 
 app.listen(8000);

@@ -1,15 +1,15 @@
 const express = require("express");
 const router = express.Router();
 
-const stepController = require("../controller/stepController");
-const Steps = new stepController();
+const calorieController = require("../controller/calorieController");
+const Calories = new calorieController();
 
-router.post("/getcalories", Steps.getCalories);
+router.post("/getcalories", Calories.getCalories);
 
-router.post("/addcalories", Steps.addDailyCalorie);
+router.post("/addcalories", Calories.addDailyCalorie);
 
-router.post("/getavgcal", Steps.addAverageCalorie);
+router.post("/getavgcal", Calories.addAverageCalorie);
 
-router.post("/getoverallcal", Steps.addOverallCalorie);
+router.post("/getoverallcal", Calories.addOverallCalorie);
 
 module.exports = router;
