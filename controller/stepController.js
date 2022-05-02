@@ -63,11 +63,36 @@ class StepController {
       });
     });
   };
-  addWeeklyStep = async (req, res, next) => {
+  addAverageStep = async (req, res, next) => {
     jwt.verify(req.token, "secretkey", async (err, authData) => {
       const username = req.body.username;
       StepModel.find({ username: username }, (err, docs) => {
-        console.log(data[0]);
+        let full = 0;
+        for (let i = 0; i < docs[0].steps.length; i++) {
+          full += docs[0].steps[i].stepcount;
+        }
+        const average = full / docs[0].steps.length;
+        if (average) {
+          res.json(average);
+        } else {
+          res.json("no");
+        }
+      });
+    });
+  };
+  addOverallStep = async (req, res, next) => {
+    jwt.verify(req.token, "secretkey", async (err, authData) => {
+      const username = req.body.username;
+      StepModel.find({ username: username }, (err, docs) => {
+        let full = 0;
+        for (let i = 0; i < docs[0].steps.length; i++) {
+          full += docs[0].steps[i].stepcount;
+        }
+        if (full) {
+          res.json(full);
+        } else {
+          res.json("no");
+        }
       });
     });
   };
