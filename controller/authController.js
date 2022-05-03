@@ -3,6 +3,7 @@ const UserModel = require("../model/authModel");
 const TokenModel = require("../model/tokenModel");
 const StepModel = require("../model/stepModel");
 const CalorieModel = require("../model/calorieModel");
+const TaskModel = require("../model/taskModel");
 
 class Auth {
   verify = async (req, res, next) => {
