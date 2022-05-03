@@ -1,7 +1,8 @@
 const jwt = require("jsonwebtoken");
 const UserModel = require("../model/authModel");
 const TokenModel = require("../model/tokenModel");
-const StatsModel = require("../model/statsModel");
+const StepModel = require("../model/stepModel");
+const CalorieModel = require("../model/calorieModel");
 
 class Auth {
   verify = async (req, res, next) => {
@@ -18,10 +19,17 @@ class Auth {
       email: req.body.email,
       password: req.body.password,
     };
-    const basicstats = {
+    const basicStep = {
       username: req.body.username,
-      email: req.body.email,
-      password: req.body.password,
+      steps: [],
+    };
+    const basicCalorie = {
+      username: req.body.username,
+      steps: [],
+    };
+    const basicTask = {
+      username: req.body.username,
+      steps: [],
     };
 
     console.log("lefut");
@@ -33,7 +41,10 @@ class Auth {
         console.log("lefut");
         const post = new UserModel(user);
         const savedPost = await post.save();
-        //const newperson = new StatsModel();
+        const newStep = new StepModel(basicStep);
+        const savedStep = await newStep.save();
+        const newCalorie = new CalorieModel(basicCalorie);
+        const savedCalorie = await newCalorie.save();
         jwt.sign({ user }, "secretkey", async (err, token) => {
           const usertoken = new TokenModel({ token });
           const savedtoken = await usertoken.save();
