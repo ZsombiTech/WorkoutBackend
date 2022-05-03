@@ -7,22 +7,24 @@ class StepController {
       const username = req.body.username;
 
       StepModel.find({ username: username }, (err, docs) => {
-        const size = docs[0].steps.length;
-        const date = new Date();
-        const year = date.getUTCFullYear();
-        let day = date.getUTCDate();
-        let month = date.getUTCMonth() + 1;
-        if (month < 10) {
-          month = "0" + month;
-        }
-        if (day < 10) {
-          day = "0" + day;
-        }
-        const full = year + "-" + month + "-" + day;
-        if (docs[0].steps[size - 1].date == full) {
-          res.json(docs[0].steps[size - 1]);
-        } else {
-          res.json("no");
+        if (docs.length > 0) {
+          const size = docs[0].steps.length;
+          const date = new Date();
+          const year = date.getUTCFullYear();
+          let day = date.getUTCDate();
+          let month = date.getUTCMonth() + 1;
+          if (month < 10) {
+            month = "0" + month;
+          }
+          if (day < 10) {
+            day = "0" + day;
+          }
+          const full = year + "-" + month + "-" + day;
+          if (docs[0].steps[size - 1].date == full) {
+            res.json(docs[0].steps[size - 1]);
+          } else {
+            res.json("no");
+          }
         }
       });
     });
@@ -71,7 +73,7 @@ class StepController {
         for (let i = 0; i < docs[0].steps.length; i++) {
           full += docs[0].steps[i].stepcount;
         }
-        const average = full / docs[0].steps.length;
+        const average = full / (docs[0].steps.length - 1);
         if (average) {
           res.json(average);
         } else {

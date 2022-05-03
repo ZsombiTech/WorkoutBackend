@@ -9,7 +9,10 @@ class TaskController {
       let id = 0;
       let tasks = [];
 
-      TaskModel.find({ name: username }, (err, docs) => {
+      console.log(username);
+
+      TaskModel.find({ username: username }, (err, docs) => {
+        console.log(docs);
         tasks = docs[0].tasks;
         const sizee = tasks.length;
         id = tasks[sizee - 1].id;
@@ -19,7 +22,7 @@ class TaskController {
         };
 
         TaskModel.findOneAndUpdate(
-          { name: username },
+          { username: username },
           { $push: { tasks: newpo } },
           (err, docs) => {
             res.json("siker");
@@ -31,9 +34,8 @@ class TaskController {
   getTask = async (req, res, next) => {
     jwt.verify(req.token, "secretkey", async (err, authData) => {
       let username = req.params.username;
-      username = username.substring(1);
 
-      TaskModel.find({ name: username }, (err, docs) => {
+      TaskModel.find({ username: username }, (err, docs) => {
         res.json(docs);
       });
     });
@@ -43,7 +45,7 @@ class TaskController {
       const description = req.body.description;
       const username = req.body.username;
       TaskModel.findOneAndUpdate(
-        { name: username },
+        { username: username },
         { $set: { "tasks.$[elem1].completed": true } },
         {
           arrayFilters: [{ "elem1.description": description }],

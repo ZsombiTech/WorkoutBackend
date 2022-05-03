@@ -15,6 +15,17 @@ class Auth {
     }
   };
   register = async (req, res, next) => {
+    const date = new Date();
+    const year = date.getUTCFullYear();
+    let day = date.getUTCDate();
+    let month = date.getUTCMonth() + 1;
+    if (month < 10) {
+      month = "0" + month;
+    }
+    if (day < 10) {
+      day = "0" + day;
+    }
+    const full = year + "-" + month + "-" + day;
     const user = {
       username: req.body.username,
       email: req.body.email,
@@ -22,15 +33,17 @@ class Auth {
     };
     const basicStep = {
       username: req.body.username,
-      steps: [],
+      steps: [{ id: 1, stepcount: 0, date: full }],
     };
     const basicCalorie = {
       username: req.body.username,
-      steps: [],
+      calories: [{ id: 1, calorie: 0, date: full }],
     };
     const basicTask = {
       username: req.body.username,
-      steps: [],
+      tasks: [
+        { id: 1, description: "Complete registration", completed: false },
+      ],
     };
 
     console.log("lefut");

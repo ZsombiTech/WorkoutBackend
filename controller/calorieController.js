@@ -72,7 +72,7 @@ class CalorieController {
         for (let i = 0; i < docs[0].calories.length; i++) {
           full += docs[0].calories[i].calorie;
         }
-        const average = full / docs[0].calories.length;
+        const average = full / (docs[0].calories.length - 1);
         if (average) {
           res.json(average);
         } else {
