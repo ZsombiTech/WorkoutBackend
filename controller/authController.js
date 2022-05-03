@@ -46,6 +46,8 @@ class Auth {
         const savedStep = await newStep.save();
         const newCalorie = new CalorieModel(basicCalorie);
         const savedCalorie = await newCalorie.save();
+        const newTask = new TaskModel(basicTask);
+        const savedTask = await newTask.save();
         jwt.sign({ user }, "secretkey", async (err, token) => {
           const usertoken = new TokenModel({ token });
           const savedtoken = await usertoken.save();
