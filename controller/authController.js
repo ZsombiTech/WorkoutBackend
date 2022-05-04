@@ -4,6 +4,7 @@ const TokenModel = require("../model/tokenModel");
 const StepModel = require("../model/stepModel");
 const CalorieModel = require("../model/calorieModel");
 const TaskModel = require("../model/taskModel");
+const FoodModel = require("../model/foodModel");
 
 class Auth {
   verify = async (req, res, next) => {
@@ -39,6 +40,10 @@ class Auth {
       username: req.body.username,
       calories: [{ id: 1, calorie: 0, date: full }],
     };
+    const basicFood = {
+      username: req.body.username,
+      food: [],
+    };
     const basicTask = {
       username: req.body.username,
       tasks: [
@@ -61,6 +66,8 @@ class Auth {
         const savedCalorie = await newCalorie.save();
         const newTask = new TaskModel(basicTask);
         const savedTask = await newTask.save();
+        const newFood = new FoodModel(basicFood);
+        const savedFood = await newFood.save();
         jwt.sign({ user }, "secretkey", async (err, token) => {
           const usertoken = new TokenModel({ token });
           const savedtoken = await usertoken.save();
