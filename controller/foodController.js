@@ -4,7 +4,7 @@ const FoodModel = require("../model/foodModel");
 class FoodController {
   getTable = async (req, res, next) => {
     jwt.verify(req.token, "secretkey", async (err, authData) => {
-      const username = req.body.username;
+      const username = req.params.username;
 
       FoodModel.find({ username: username }, (err, docs) => {
         if (docs.length > 0) {

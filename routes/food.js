@@ -4,7 +4,7 @@ const router = express.Router();
 const foodController = require("../controller/foodController");
 const Food = new foodController();
 
-router.get("/gettable", Food.getTable);
+router.get("/gettable/:username", Food.getTable);
 
 router.post("/addtable", Food.addTable);
 
