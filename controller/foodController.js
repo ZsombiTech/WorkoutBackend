@@ -44,7 +44,7 @@ class FoodController {
           { username: username },
           { $push: { food: newfood } },
           (err, docs2) => {
-            console.log(docs2);
+            //console.log(docs2);
           }
         );
       });
