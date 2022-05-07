@@ -12,7 +12,6 @@ const CaloriesSchema = mongoose.Schema({
       date: String,
     },
   ],
-
   date: {
     type: Date,
     default: Date.now,
