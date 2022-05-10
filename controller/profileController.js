@@ -50,5 +50,11 @@ class Profile {
       });
     });
   };
+  randomNum = async (req, res, next) => {
+    jwt.verify(req.token, "secretkey", async (err, authData) => {
+      const num = Math.floor(Math.random() * 100);
+      res.json(num);
+    });
+  };
 }
 module.exports = Profile;
