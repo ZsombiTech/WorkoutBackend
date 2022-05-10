@@ -58,9 +58,7 @@ class StepController {
         StepModel.findOneAndUpdate(
           { username: username },
           { $push: { steps: newstep } },
-          (err, docs2) => {
-            console.log(docs2);
-          }
+          (err, docs2) => {}
         );
       });
     });

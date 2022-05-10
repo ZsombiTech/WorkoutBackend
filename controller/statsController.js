@@ -13,9 +13,7 @@ class Stats {
       StatsModel.findByIdAndUpdate(
         { _id: _id },
         { $push: { sleepinghour: user } },
-        (err, docs) => {
-          console.log("siker");
-        }
+        (err, docs) => {}
       );
 
       const step = {
@@ -26,9 +24,7 @@ class Stats {
       StatsModel.findByIdAndUpdate(
         { _id: _id },
         { $push: { steps: step } },
-        (err, docs) => {
-          console.log("siker");
-        }
+        (err, docs) => {}
       );
 
       const distance = {

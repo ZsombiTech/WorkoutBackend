@@ -9,10 +9,7 @@ class TaskController {
       let id = 0;
       let tasks = [];
 
-      console.log(username);
-
       TaskModel.find({ username: username }, (err, docs) => {
-        console.log(docs);
         tasks = docs[0].tasks;
         const sizee = tasks.length;
         id = tasks[sizee - 1].id;
@@ -50,9 +47,7 @@ class TaskController {
         {
           arrayFilters: [{ "elem1.description": description }],
         },
-        (err, docs) => {
-          console.log(docs);
-        }
+        (err, docs) => {}
       );
     });
   };

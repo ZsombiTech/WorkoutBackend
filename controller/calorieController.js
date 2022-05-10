@@ -57,9 +57,7 @@ class CalorieController {
         CalorieModel.findOneAndUpdate(
           { username: username },
           { $push: { calories: newcalorie } },
-          (err, docs2) => {
-            console.log(docs2);
-          }
+          (err, docs2) => {}
         );
       });
     });

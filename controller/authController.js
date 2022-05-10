@@ -11,7 +11,6 @@ class Auth {
     if (req.token != null) {
       jwt.verify(req.token, "secretkey", async (err, authData) => {
         res.json({ response: "Good" });
-        console.log("okes");
       });
     }
   };
@@ -51,13 +50,10 @@ class Auth {
       ],
     };
 
-    console.log("lefut");
     UserModel.find({ email: user.email }, "username", async (err, docs) => {
       if (docs.length > 0) {
-        console.log("lefut");
         res.json({ response: "Already exits" });
       } else {
-        console.log("lefut");
         const post = new UserModel(user);
         const savedPost = await post.save();
         const newStep = new StepModel(basicStep);
