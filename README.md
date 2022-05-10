@@ -7,5 +7,5 @@ In order to have an efficient and usable application, it stores all data in a Mo
 
 The deployment of the platform is planned.
 
-This repo contains the backed part of the platform.
+This repo contains the backend part of the platform.
 
