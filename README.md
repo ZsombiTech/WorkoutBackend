@@ -1,4 +1,4 @@
-# workoutBackend
+# WorkoutBackend
 
 The main purpose of this workout app is to help people with their exercises by providing features such as calorie management and diet tracking.
 
