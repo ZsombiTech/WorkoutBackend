@@ -10,4 +10,6 @@ router.post("/setloc", Profile.setLoc);
 
 router.get("/getProfileData/:userid", Profile.getProfileData);
 
+router.get("/getrandom", Profile.randomNum);
+
 module.exports = router;
