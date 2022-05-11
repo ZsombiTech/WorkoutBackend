@@ -28,7 +28,7 @@ app.use(
 );*/
 
 const limiter = rateLimit({
-  windowMs: 30 * 60 * 1000,
+  windowMs: 60 * 60 * 1000,
   max: 300,
   standardHeaders: true,
   legacyHeaders: false,
