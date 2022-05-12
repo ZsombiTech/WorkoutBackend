@@ -31,7 +31,6 @@ class TaskController {
   getTask = async (req, res, next) => {
     jwt.verify(req.token, "secretkey", async (err, authData) => {
       let username = req.params.username;
-      console.log("keres");
       TaskModel.find({ username: username }, (err, docs) => {
         res.json(docs);
       });
