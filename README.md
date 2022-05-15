@@ -7,5 +7,4 @@ In order to have an efficient and usable application, it stores all data in a Mo
 
 The backend has been deployed to Heroku.
 
-This repo contains the backend part of the platform.
-
+This repo contains the backend portion of the platform.
